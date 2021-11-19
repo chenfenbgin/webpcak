@@ -1,5 +1,6 @@
 // 依赖css
 import "../css/style.css";
+import "../css/title.less";
 
 // 我们可以使用内联式来指定loader, 不推荐
 // import "css-loader!../css/style.css";

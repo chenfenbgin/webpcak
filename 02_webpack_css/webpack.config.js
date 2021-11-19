@@ -28,6 +28,26 @@ module.exports = {
 
           "style-loader",
           "css-loader",
+          "postcss-loader"
+          // {
+          //   loader: "postcss-loader",
+          //   options: {
+          //     postcssOptions: {
+          //       plugins: [
+          //         require("autoprefixer")
+          //       ]
+          //     }
+          //   }
+          // }
+        ]
+      },
+      {
+        // i表示忽略大小写
+        test: /\.less$/i,
+        use: [
+          "style-loader",
+          "css-loader",
+          "less-loader"
         ]
       }
     ]
