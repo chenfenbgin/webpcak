@@ -1,0 +1,7 @@
+.image-bg{
+  background-image: url("../img/nhlt.jpg");
+  /* 图片大小适配 */
+  background-size: contain;
+  width: 200px;
+  height: 200px;
+}
