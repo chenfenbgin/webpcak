@@ -14,20 +14,24 @@ module.exports = {
     path: path.resolve(__dirname, './build'),
     filename: 'bundle.js'
   },
+  // 方式二： 配置loader
   module: {
     rules: [
       {
-        //1.loader写法(语法糖)
+        //1.loader写法(语法糖) test:以什么结尾 .正则中需要转义
         test: /\.css$/,
+        // 一个loader的情况下，直接写loader: 'css-loader'
         // loader: "css-loader"
 
         // 2.完整写法
         // {loader: "css-loader"}, loader从数组往后执行
         // style-loader其实就是创建一个style标签，然后把样式放到标签里面
+        // 加载css-loader需要用到其他的loader，可以使用use: []
         use: [
-
+          // 如果没有其他配置，就这么写
           "style-loader",
           "css-loader",
+          // 浏览器前缀
           "postcss-loader"
           // {
           //   loader: "postcss-loader",

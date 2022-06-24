@@ -6,7 +6,9 @@
     "build": "vue-tsc --noEmit && vite build",
     "serve": "vite preview"
   },
+  "type": "module",
   "dependencies": {
+    "qs": "^6.10.5",
     "vue": "^3.2.16"
   },
   "devDependencies": {
