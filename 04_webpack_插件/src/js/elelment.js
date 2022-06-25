@@ -29,4 +29,5 @@ iEL.className = "iconfont icon-ashbin";
 document.body.appendChild(divEL);
 document.body.appendChild(bgDivEL);
 document.body.appendChild(imgEL)
+document.body.appendChild(iEL)
 // 我们执行webpack，这个js文件没有被打包，之前的bundle.js有被打包

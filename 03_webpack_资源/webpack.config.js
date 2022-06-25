@@ -1,35 +1,25 @@
-const path = require('path');
+const path = require("path");
 // 插件需要手动导入
-const { CleanWebpackPlugin}= require("clean-webpack-plugin");
-const HtmlWebpackPlugin = require('html-webpack-plugin')
+// const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+// const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
   entry: "./src/index.js",
   output: {
-    path: path.resolve(__dirname, './build'),
-    filename: 'js/bundle.js',
+    path: path.resolve(__dirname, "./build"),
+    filename: "js/bundle.js",
     // asset module 打包的名字也可以写在这里
-    assetModuleFilename: "img/[name]-[hash:6][ext]"
+    assetModuleFilename: "img/[name]-[hash:6][ext]",
   },
   module: {
     rules: [
       {
         test: /\.css$/,
-        use: [
-
-          "style-loader",
-          "css-loader",
-          "postcss-loader"
-
-        ]
+        use: ["style-loader", "css-loader", "postcss-loader"],
       },
       {
         test: /\.less$/i,
-        use: [
-          "style-loader",
-          "css-loader",
-          "less-loader"
-        ]
+        use: ["style-loader", "css-loader", "less-loader"],
       },
 
       {
@@ -38,13 +28,13 @@ module.exports = {
         // 最常用的是根据asset， 要不要单独转成一个文件
         type: "asset",
         generator: {
-          filename: "img/[name]-[hash:6][ext]"
+          filename: "img/[name]-[hash:6][ext]",
         },
         parser: {
           dataUrlCondition: {
-            maxSize: 100 * 1024
-          }
-        }
+            maxSize: 100 * 1024,
+          },
+        },
       },
 
       // file-loader
@@ -54,11 +44,11 @@ module.exports = {
       //     loader: "file-loader",
       //     options: {
       //       // outputPath: 'img', //可以放到name属性中
+      //       // name:是原来图片的名字， ext是原来图片的扩展名
       //       name: "img/[name]-[hash:6].[ext]"
       //     }
       //   }
       // },
-
 
       // {
       //   test: /\.(jpe?g|png|gif|svg)$/,
@@ -72,7 +62,6 @@ module.exports = {
       //   }
       // },
 
-
       // {
       //   test: /\.(jpe?g|png|gif|svg)$/,
       //   use: {
@@ -82,7 +71,6 @@ module.exports = {
       //     }
       //   }
       // },
-
 
       // {
       //   test: /\.(eot|ttf|woff2?)$/,
@@ -95,17 +83,16 @@ module.exports = {
       // },
       {
         test: /\.(eot|ttf|woff2?)$/,
-        type: 'asset/resource',
+        type: "asset/resource",
         generator: {
-          filename: "font/[name]-[hash:6][ext]"
+          filename: "font/[name]-[hash:6][ext]",
         },
-      }
-    ]
+      },
+    ],
   },
-  plugins: [
-    // 一个个的插件对象
-    new CleanWebpackPlugin(), 
-    new HtmlWebpackPlugin()
-  ]
-
-}
+  // plugins: [
+  //   // 一个个的插件对象
+  //   new CleanWebpackPlugin(),
+  //   new HtmlWebpackPlugin(),
+  // ],
+};

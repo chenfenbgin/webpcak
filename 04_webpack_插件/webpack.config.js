@@ -1,41 +1,32 @@
-const path = require('path');
+const path = require("path");
 // 插件需要手动导入
-const { CleanWebpackPlugin}= require("clean-webpack-plugin");
-const HtmlWebpackPlugin = require('html-webpack-plugin')
+const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const { DefinePlugin } = require("webpack");
 
 module.exports = {
   // 设置模式
   // development 开发阶段，设置
   // production 准备打包上线的时候，设置
-  mode: "development", 
+  mode: "development",
   // 设置source-map,建立js映射文件，在开发的时候方便调试和代码错误
   devtool: "source-map",
   entry: "./src/index.js",
   output: {
-    path: path.resolve(__dirname, './build'),
-    filename: 'js/bundle.js',
+    path: path.resolve(__dirname, "./build"),
+    filename: "js/bundle.js",
     // asset module 打包的名字也可以写在这里
-    assetModuleFilename: "img/[name]-[hash:6][ext]"
+    assetModuleFilename: "img/[name]-[hash:6][ext]",
   },
   module: {
     rules: [
       {
         test: /\.css$/,
-        use: [
-
-          "style-loader",
-          "css-loader",
-          "postcss-loader"
-
-        ]
+        use: ["style-loader", "css-loader", "postcss-loader"],
       },
       {
         test: /\.less$/i,
-        use: [
-          "style-loader",
-          "css-loader",
-          "less-loader"
-        ]
+        use: ["style-loader", "css-loader", "less-loader"],
       },
 
       {
@@ -44,13 +35,13 @@ module.exports = {
         // 最常用的是根据asset， 要不要单独转成一个文件
         type: "asset",
         generator: {
-          filename: "img/[name]-[hash:6][ext]"
+          filename: "img/[name]-[hash:6][ext]",
         },
         parser: {
           dataUrlCondition: {
-            maxSize: 100 * 1024
-          }
-        }
+            maxSize: 100 * 1024,
+          },
+        },
       },
 
       // file-loader
@@ -65,7 +56,6 @@ module.exports = {
       //   }
       // },
 
-
       // {
       //   test: /\.(jpe?g|png|gif|svg)$/,
       //   use: {
@@ -78,7 +68,6 @@ module.exports = {
       //   }
       // },
 
-
       // {
       //   test: /\.(jpe?g|png|gif|svg)$/,
       //   use: {
@@ -88,7 +77,6 @@ module.exports = {
       //     }
       //   }
       // },
-
 
       // {
       //   test: /\.(eot|ttf|woff2?)$/,
@@ -101,17 +89,25 @@ module.exports = {
       // },
       {
         test: /\.(eot|ttf|woff2?)$/,
-        type: 'asset/resource',
+        type: "asset/resource",
         generator: {
-          filename: "font/[name]-[hash:6][ext]"
+          filename: "font/[name]-[hash:6][ext]",
         },
-      }
-    ]
+      },
+    ],
   },
   plugins: [
     // 一个个的插件对象
-    new CleanWebpackPlugin(), 
-    new HtmlWebpackPlugin()
-  ]
-
-}
+    new CleanWebpackPlugin(),
+    new HtmlWebpackPlugin({
+      title: "哈哈哈"
+    }),
+    new DefinePlugin({
+      BASE_URL: "'./'"
+    })
+    // 这里是可以传入自己定义的模板的
+    // new HtmlWebpackPlugin({
+    //   template: './public/index.html',
+    // })
+  ],
+};
