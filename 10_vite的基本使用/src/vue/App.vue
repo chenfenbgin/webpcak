@@ -8,7 +8,7 @@
   export default {
     data() {
       return {
-        message: "Hello App"
+        message: "Hello Appee3"
       }
     }
   }
